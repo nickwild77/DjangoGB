@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from datetime import datetime
 
-from extract_data_script import extract_data
+from products.fixtures.extract_data_script import extract_data
 
 
 # Create your views here.
@@ -21,7 +21,7 @@ def products(request):
     context = {
         'page_title': 'geekshop - каталог',
         'today': datetime.now(),
-        'products': extract_data('db.json')
+        'products': extract_data('products/fixtures/db.json')
     }
     return render(request, 'products.html', context)
 
