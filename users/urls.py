@@ -17,9 +17,9 @@ from django.urls import path
 
 app_name = 'users'
 
-from products.views import products
+from users.views import login, register
 
 urlpatterns = [
-    path('', products, name='index'),
+    path('login/', login, name='login'),
+    path('register/', register, name='register'),
 ]
-
