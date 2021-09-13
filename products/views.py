@@ -15,7 +15,7 @@ def index(request):
         'page_title': 'geekshop',
         'today': datetime.now(),
     }
-    return render(request, 'index.html', context)
+    return render(request, 'products/index.html', context)
 
 
 def products(request, pk=None):
@@ -27,4 +27,4 @@ def products(request, pk=None):
         'products': extract_data('products/fixtures/db.json'),
         'category': extract_data('products/fixtures/category.json')
     }
-    return render(request, 'products.html', context)
+    return render(request, 'products/products.html', context)
