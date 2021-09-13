@@ -1,6 +1,7 @@
 {% extends 'products/base.html' %}
 {% load static %}
 
+
 {% block title %}
     {{ title }}
 {% endblock %}
@@ -65,6 +66,9 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="col-lg-5">
+                {% include 'baskets/baskets.html' %}
             </div>
         </div>
     </div>
