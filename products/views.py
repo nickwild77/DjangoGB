@@ -1,30 +1,21 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+import os
+import json
 
-from datetime import datetime
+from products.models import Product, ProductsCategory
 
-from products.fixtures.extract_data_script import extract_data
-from products.models import ProductsCategory, Product
-
-
-# Create your views here.
-# Controller-functions
+MODULE_DIR = os.path.dirname(__file__)
 
 
 def index(request):
-    context = {
-        'page_title': 'geekshop',
-        'today': datetime.now(),
-    }
-    return render(request, 'index.html', context)
+    context = {'title': 'GeekShop'}
+    return render(request, 'products/index.html', context)
 
 
-def products(request, pk=None):
-    show_db_categories = ProductsCategory.objects.all()
-    show_db_products = Product.objects.all()
-    context = {
-        'page_title': 'geekshop - каталог',
-        'today': datetime.now(),
-        'products': extract_data('products/fixtures/db.json'),
-        'category': extract_data('products/fixtures/category.json')
-    }
-    return render(request, 'products.html', context)
+def products(request):
+    context = {'title': 'Каталог',
+               'products': Product.objects.all(),
+               'category': ProductsCategory.objects.all(),
+               }
+    return render(request, 'products/products.html', context)

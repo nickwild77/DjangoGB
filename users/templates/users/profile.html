@@ -1,9 +1,7 @@
-{% extends 'users/base.html' %}
+{% extends 'products/base.html' %}
 {% load static %}
 
-{% block title %}
-    {{ title }}
-{% endblock %}
+
 
 {% block css %}
     <!-- Custom styles for this template -->
@@ -65,6 +63,9 @@
                         </div>
                     </div>
                 </form>
+            </div>
+            <div class="col-lg-5">
+                {% include 'baskets/baskets.html' %}
             </div>
         </div>
     </div>
