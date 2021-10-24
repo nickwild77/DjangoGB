@@ -5,14 +5,19 @@ from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView
 
-from admins.forms import UserAdminRegisterForm, UserAdminProfileForm
+from admins.forms import UserAdminRegisterForm, UserAdminProfileForm, ProductUpdateCategoryForm
 from users.models import User
 from products.models import ProductsCategory
 
 
-def index(request):
-    return render(request, 'admins/admin.html')
+class IndexView(TemplateView):
+    template_name = 'admins/admin.html'
+
+
+# def index(request):
+#     return render(request, 'admins/admin.html')
 
 
 class UserListView(ListView):
@@ -28,13 +33,6 @@ class UserListView(ListView):
     def dispatch(self, request, *args, **kwargs):
         return super(UserListView, self).dispatch(request, *args, **kwargs)
 
-
-# @user_passes_test(lambda u: u.is_superuser)
-# def admin_users(request):
-#     context = {
-#         'users': User.objects.all()
-#     }
-#     return render(request, 'admins/admin-users-read.html', context)
 
 class UserCreateView(CreateView):
     model = User
@@ -52,52 +50,73 @@ class UserCreateView(CreateView):
         return super(UserCreateView, self).dispatch(request, *args, **kwargs)
 
 
+class UserUpdateView(UpdateView):
+    model = User
+    template_name = 'admins/admin-users-update-delete.html'
+    form_class = UserAdminProfileForm
+    success_url = reverse_lazy('admins:admin_users')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(UserUpdateView, self).get_context_data(**kwargs)
+        context['title'] = 'Aдминка | Обновление пользователя'
+        return context
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserUpdateView, self).dispatch(request, *args, **kwargs)
+
+
+class UserDeleteView(DeleteView):
+    model = User
+    template_name = 'admins/admin-users-update-delete.html'
+    form_class = UserAdminProfileForm
+    success_url = reverse_lazy('admins:admin_users')
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserDeleteView, self).dispatch(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.is_active = False
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+
+class CategoryListView(ListView):
+    model = ProductsCategory
+    template_name = 'admins/admin-categories-read.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CategoryListView, self).get_context_data(**kwargs)
+        context['title'] = 'Админка | Категории'
+        return context
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, request, *args, **kwargs):
+        return super(CategoryListView, self).dispatch(request, *args, **kwargs)
+
+
+class CategoryUpdateView(UpdateView):
+    model = ProductsCategory
+    template_name = 'admins/admin-categories-update-delete.html'
+    form_class = ProductUpdateCategoryForm
+    success_url = reverse_lazy('admins:admin_categories')
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryUpdateView, self).get_context_data(**kwargs)
+        obj = self.get_object()
+        context['key'] = obj.id
+        context['cat'] = obj.name
+        return context
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, request, *args, **kwargs):
+        return super(CategoryUpdateView, self).dispatch(request, *args, **kwargs)
+
 # @user_passes_test(lambda u: u.is_superuser)
-# def admin_users_create(request):
-#     if request.method == 'POST':
-#         form = UserAdminRegisterForm(data=request.POST, files=request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect(reverse('admins:admin_users'))
-#     else:
-#         form = UserAdminRegisterForm()
+# def admin_categories(request):
 #     context = {
-#         'title': 'GeekShop - Aдмин | Регистрация',
-#         'form': form
+#         'categories': ProductsCategory.objects.all()
 #     }
-#
-#     return render(request, 'admins/admin-users-create.html', context)
-
-
-@user_passes_test(lambda u: u.is_superuser)
-def admin_users_update(request, id):
-    users_select = User.objects.get(id=id)
-    if request.method == 'POST':
-        form = UserAdminProfileForm(data=request.POST, instance=users_select, files=request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('admins:admin_users'))
-    else:
-        form = UserAdminProfileForm(instance=users_select)
-    context = {
-        'title': 'GeekShop - Админ | Обновление пользователя',
-        'form': form,
-        'users_select': users_select
-    }
-    return render(request, 'admins/admin-users-update-delete.html', context)
-
-
-@user_passes_test(lambda u: u.is_superuser)
-def admin_users_delete(request, id):
-    user = User.objects.get(id=id)
-    user.is_active = False
-    user.save()
-    return HttpResponseRedirect(reverse('admins:admin_users'))
-
-
-@user_passes_test(lambda u: u.is_superuser)
-def admin_categories(request):
-    context = {
-        'categories': ProductsCategory.objects.all()
-    }
-    return render(request, 'admins/admin-categories-read.html', context)
+#     return render(request, 'admins/admin-categories-read.html', context)
