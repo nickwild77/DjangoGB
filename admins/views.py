@@ -1,15 +1,24 @@
-from django.http import HttpResponseRedirect
+from django.db.models import F
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
+from django.views.generic import DetailView, TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import TemplateView
+from django.db import connection
 
-from admins.forms import UserAdminRegisterForm, UserAdminProfileForm, ProductUpdateCategoryForm
+from admins.forms import UserAdminRegisterForm, UserAdminProfileForm, CategoryUpdateFormAdmin
+from products.models import ProductsCategory, Product
 from users.models import User
-from products.models import ProductsCategory
+
+
+def db_profile_by_type(prefix, type, queries):
+    update_queries = list(filter(lambda x: type in x['sql'], queries))
+    print(f'db_profile {type} for {prefix}:')
+    [print(query['sql']) for query in update_queries]
 
 
 class IndexView(TemplateView):
@@ -22,6 +31,7 @@ class IndexView(TemplateView):
 
 class UserListView(ListView):
     model = User
+    context_object_name = 'users'
     template_name = 'admins/admin-users-read.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -97,11 +107,45 @@ class CategoryListView(ListView):
         return super(CategoryListView, self).dispatch(request, *args, **kwargs)
 
 
+class CategoryDeleteView(DeleteView):
+    model = ProductsCategory
+    template_name = 'admins/admin-category-update-delete.html'
+    success_url = reverse_lazy('admins:admin_category')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.product_set.update(is_active=False)
+        self.object.is_active = False
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, request, *args, **kwargs):
+        return super(CategoryDeleteView, self).dispatch(request, *args, **kwargs)
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, request, *args, **kwargs):
+        return super(CategoryDeleteView, self).dispatch(request, *args, **kwargs)
+
+
 class CategoryUpdateView(UpdateView):
     model = ProductsCategory
-    template_name = 'admins/admin-categories-update-delete.html'
-    form_class = ProductUpdateCategoryForm
-    success_url = reverse_lazy('admins:admin_categories')
+    template_name = 'admins/admin-category-update-delete.html'
+    success_url = reverse_lazy('admins:admin_category')
+    form_class = CategoryUpdateFormAdmin
+
+    def form_valid(self, form):
+        if 'discount' in form.cleaned_data:
+            discount = form.cleaned_data['discount']
+            if discount:
+                print(f'применяется скидка {discount} % к товарам категории {self.object.name}')
+                self.object.product_set.update(price=F('price') * (1 - discount / 100))
+                db_profile_by_type(self.__class__, 'UPDATE', connection.queries)
+        return HttpResponseRedirect(self.get_success_url())
+
+    @method_decorator(user_passes_test(lambda u: u.is_superuser))
+    def dispatch(self, request, *args, **kwargs):
+        return super(CategoryUpdateView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(CategoryUpdateView, self).get_context_data(**kwargs)
@@ -110,13 +154,21 @@ class CategoryUpdateView(UpdateView):
         context['cat'] = obj.name
         return context
 
+
+# Product
+
+class ProductListView(ListView):
+    model = Product
+    template_name = 'admins/admin-product-read.html'
+
+    def get_queryset(self):
+        return Product.objects.all().select_related()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ProductListView, self).get_context_data(**kwargs)
+        context['title'] = 'Админка | Продукты'
+        return context
+
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, request, *args, **kwargs):
-        return super(CategoryUpdateView, self).dispatch(request, *args, **kwargs)
-
-# @user_passes_test(lambda u: u.is_superuser)
-# def admin_categories(request):
-#     context = {
-#         'categories': ProductsCategory.objects.all()
-#     }
-#     return render(request, 'admins/admin-categories-read.html', context)
+        return super(ProductListView, self).dispatch(request, *args, **kwargs)

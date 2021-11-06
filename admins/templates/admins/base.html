@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>{{ title}}</title>
-    <link href="{% static 'css/auth-admin.css'%}" rel="stylesheet"/>
+    <title>{{ title }}</title>
+    <link href="{% static 'css/auth-admin.css' %}" rel="stylesheet"/>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
           crossorigin="anonymous"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"
@@ -53,13 +53,13 @@
                         </div>
                         Пользователи
                     </a>
-                    <a class="nav-link" href="{% url 'admins:admin_categories' %}">
+                    <a class="nav-link" href="{% url 'admins:admin_category' %}">
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-shopping-basket"></i>
                         </div>
                         Категории
                     </a>
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{% url 'admins:admin_product' %}">
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-tshirt"></i>
                         </div>
@@ -77,10 +77,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="{% static 'js/auth-admin.js'%}"></script>
+<script src="{% static 'js/auth-admin.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-<script src="{% static 'js/datatable.js'%}"></script>
+<script src="{% static 'js/datatable.js' %}"></script>
 </body>
 </html>
