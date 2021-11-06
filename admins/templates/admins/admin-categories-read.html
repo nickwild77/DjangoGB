@@ -18,12 +18,18 @@
                                 <tr>
                                     <th>Категория</th>
                                     <th>Описание</th>
+                                    <th>Активный</th>
+                                    <th>Удалить</th>
+                                    <th>Изменить</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>Категория</th>
                                     <th>Описание</th>
+                                    <th>Активный</th>
+                                    <th>Удалить</th>
+                                    <th>Изменить</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
@@ -35,7 +41,27 @@
                                         </td>
                                         <td>{{ category.description }}</td>
 
+                                        <td class="text-center">
+                                            {% if category.is_active %}
+                                                <i class="fas fa-check-circle"></i>
+                                            {% else %}
 
+                                                <i class="fas fa-times-circle"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <form action="{% url 'admins:admin_category_delete' category.id %}"
+                                                  method="post">
+                                                {% csrf_token %}
+                                                <input class="btn btn-danger btn-block" type="submit" value="Удалить">
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="{% url 'admins:admin_category_update' category.id %}">
+                                                {% csrf_token %}
+                                                <input class="btn btn-success btn-block" type="submit" value="Изменить">
+                                            </form>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
