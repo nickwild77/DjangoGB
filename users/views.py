@@ -3,9 +3,10 @@ from django.core.mail import send_mail, message
 from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth, messages
 from django.urls import reverse
-from .forms import UserLoginForm, UserRegisterForm, UserProfileForm
+from .forms import UserLoginForm, UserRegisterForm, UserProfileForm, UserProfileEditForm
 from baskets.models import Basket
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 
 # Create your views here.
 from .models import User
@@ -50,21 +51,28 @@ def register(request):
     return render(request, 'users/register.html', context)
 
 
-@login_required
+@transaction.atomic
 def profile(request):
-    if request.method == 'POST':
-        form = UserProfileForm(data=request.POST, instance=request.user, files=request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('users:profile'))
+    title = 'Профиль'
 
+    if request.method == 'POST':
+        edit_form = UserProfileForm(data=request.POST, files=request.FILES, instance=request.user)
+
+        profile_form = UserProfileEditForm(request.POST, instance=request.user.userprofile)
+
+        if edit_form.is_valid() and profile_form.is_valid():
+            edit_form.save()
+            return HttpResponseRedirect(reverse('users:profile'))
     else:
-        form = UserProfileForm(instance=request.user)
+        edit_form = UserProfileForm(instance=request.user)
+        profile_form = UserProfileEditForm(instance=request.user.userprofile)
+
     context = {
-        'title': 'GeekShop - Профиле',
-        'form': form,
-        # 'baskets': Basket.objects.filter(user=request.user)
+        'title': title,
+        'edit_form': edit_form,
+        'profile_form': profile_form,
     }
+
     return render(request, 'users/profile.html', context)
 
 
@@ -89,7 +97,6 @@ def verify(request, email, activation_key):
     try:
         user = User.objects.get(email=email)
         if user.activation_key == activation_key and not user.is_activation_key_expired():
-            title = 'Подтверждение регистрации'
             user.is_active = True
             user.save()
             auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
