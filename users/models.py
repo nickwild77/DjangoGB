@@ -8,12 +8,10 @@ from django.dispatch import receiver
 # Create your models here.
 from django.utils.timezone import now
 
-NOT_NULL = {'blank': True, 'null': True}
-
 
 class User(AbstractUser):
-    image = models.ImageField(upload_to='users_images', blank=True)
-    age = models.PositiveIntegerField(verbose_name='возраст', default=18)
+    image = models.ImageField(upload_to='users_image', blank=True)
+    age = models.PositiveIntegerField(verbose_name='возраст', blank=True, null=True)
 
     activation_key = models.CharField(max_length=128, blank=True)
 
@@ -42,4 +40,3 @@ class UserProfile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.userprofile.save()
-
