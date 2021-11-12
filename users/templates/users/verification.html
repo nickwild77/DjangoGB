@@ -1,0 +1,33 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="card shadow-lg border-0 rounded-lg mt-5">
+        {% if user.is_authenticated %}
+            <div class="card-header"><h3 class="text-center font-weight-light my-4">Поздравляем</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    Пользователь <strong>{{ user.username }}</strong> подтвержден.
+                </p>
+            </div>
+        {% else %}
+            <div class="card-header">
+                <h3 class="text-center font-weight-light my-4">Верификация не пройдена.</h3>
+                <div class="card-body">
+                    <p>
+                        Верификация не пройдена.
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+        <button class="btn btn-round form-control">
+            <a href="{% url 'index' %}" class="">На главную</a>
+        </button>
+
+    </div>
+{% endblock %}
