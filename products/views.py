@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -16,7 +17,6 @@ def index(request):
 
 
 def products(request, id=None, page=1):
-
     products = Product.objects.filter(category_id=id) if id != None else Product.objects.all()
     paginator = Paginator(products, per_page=3)
     try:
@@ -37,3 +37,10 @@ def products(request, id=None, page=1):
     context['products'] = products_paginator
     # context.update({'products': Product.objects.filter(category_id=id) if id != None else Product.objects.all()})
     return render(request, 'products/products.html', context)
+
+
+def get_price(request, product_id):
+    if request.is_ajax():
+        product = get_object_or_404(Product, id=product_id, is_active=True)
+        price = product.price
+        return JsonResponse({'status': True, 'price': price})
