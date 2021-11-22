@@ -49,9 +49,11 @@
                     </tr>
                 {% endfor %}
             </table>
-            <button type="submit" value="сохранить" class="btn btn-default btn-round form-control last">сохранить
-            </button>
-            {% include 'ordersapp/includes/inc_order_actions.html' %}
+            <div class="container">
+                <button type="submit" value="сохранить" class="btn btn-success btn-round form-control my-2 last">сохранить
+                </button>
+                {% include 'ordersapp/includes/inc_order_actions.html' %}
+            </div>
         </form>
     </div>
 
