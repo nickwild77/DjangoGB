@@ -1,0 +1,366 @@
+GET / HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:14 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+X-Frame-Options: DENY
+Vary: Cookie
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Content-Encoding: gzip
+
+
+GET /static/vendor/fontawesome/fontawesome-icons.js HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:14 GMT
+Content-Type: application/javascript
+Content-Length: 15126
+Last-Modified: Mon, 22 Nov 2021 22:04:06 GMT
+Connection: close
+ETag: "619c13d6-3b16"
+Accept-Ranges: bytes
+
+
+GET /static/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:14 GMT
+Content-Type: application/javascript
+Content-Length: 84152
+Last-Modified: Mon, 22 Nov 2021 22:04:06 GMT
+Connection: close
+ETag: "619c13d6-148b8"
+Accept-Ranges: bytes
+
+
+GET /static/vendor/jquery/jquery.min.js HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:14 GMT
+Content-Type: application/javascript
+Content-Length: 89476
+Last-Modified: Mon, 22 Nov 2021 22:04:07 GMT
+Connection: close
+ETag: "619c13d7-15d84"
+Accept-Ranges: bytes
+
+
+GET /static/css/index.css HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:14 GMT
+Content-Type: text/css
+Content-Length: 411
+Last-Modified: Mon, 22 Nov 2021 22:04:06 GMT
+Connection: close
+ETag: "619c13d6-19b"
+Accept-Ranges: bytes
+
+
+GET /static/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:14 GMT
+Content-Type: text/css
+Content-Length: 160392
+Last-Modified: Mon, 22 Nov 2021 22:04:06 GMT
+Connection: close
+ETag: "619c13d6-27288"
+Accept-Ranges: bytes
+
+
+GET /products/ HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:15 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: close
+X-Frame-Options: DENY
+Vary: Cookie
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Content-Encoding: gzip
+
+
+GET /static/vendor/fontawesome/fontawesome-icons.js HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:15 GMT
+Content-Type: application/javascript
+Content-Length: 15126
+Last-Modified: Mon, 22 Nov 2021 22:04:06 GMT
+Connection: close
+ETag: "619c13d6-3b16"
+Accept-Ranges: bytes
+
+
+GET /static/vendor/bootstrap/js/bootstrap.bundle.min.js HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:15 GMT
+Content-Type: application/javascript
+Content-Length: 84152
+Last-Modified: Mon, 22 Nov 2021 22:04:06 GMT
+Connection: close
+ETag: "619c13d6-148b8"
+Accept-Ranges: bytes
+
+
+GET /static/vendor/jquery/jquery.min.js HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:15 GMT
+Content-Type: application/javascript
+Content-Length: 89476
+Last-Modified: Mon, 22 Nov 2021 22:04:07 GMT
+Connection: close
+ETag: "619c13d7-15d84"
+Accept-Ranges: bytes
+
+
+GET /media/products_images/Brown-sports-oversized-top-ASOS-DESIGN.png HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:16 GMT
+Content-Type: image/png
+Content-Length: 1302877
+Last-Modified: Fri, 26 Nov 2021 16:12:06 GMT
+Connection: close
+ETag: "61a10756-13e15d"
+Accept-Ranges: bytes
+
+
+GET /media/products_images/Blue-jacket-The-North-Face.png HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:16 GMT
+Content-Type: image/png
+Content-Length: 1533615
+Last-Modified: Fri, 26 Nov 2021 16:12:06 GMT
+Connection: close
+ETag: "61a10756-1766af"
+Accept-Ranges: bytes
+
+
+GET /media/products_images/Adidas-hoodie.png HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:16 GMT
+Content-Type: image/png
+Content-Length: 2162760
+Last-Modified: Fri, 26 Nov 2021 16:12:06 GMT
+Connection: close
+ETag: "61a10756-210048"
+Accept-Ranges: bytes
+
+
+GET /static/vendor/img/slides/slide-3.jpg HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:16 GMT
+Content-Type: image/jpeg
+Content-Length: 302904
+Last-Modified: Mon, 22 Nov 2021 22:04:07 GMT
+Connection: close
+ETag: "619c13d7-49f38"
+Accept-Ranges: bytes
+
+
+GET /static/vendor/img/slides/slide-2.jpg HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:16 GMT
+Content-Type: image/jpeg
+Content-Length: 306430
+Last-Modified: Mon, 22 Nov 2021 22:04:07 GMT
+Connection: close
+ETag: "619c13d7-4acfe"
+Accept-Ranges: bytes
+
+
+GET /static/vendor/img/slides/slide-1.jpg HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:16 GMT
+Content-Type: image/jpeg
+Content-Length: 498003
+Last-Modified: Mon, 22 Nov 2021 22:04:07 GMT
+Connection: close
+ETag: "619c13d7-79953"
+Accept-Ranges: bytes
+
+
+GET /static/css/products.css HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:16 GMT
+Content-Type: text/css
+Content-Length: 32
+Last-Modified: Mon, 22 Nov 2021 22:04:06 GMT
+Connection: close
+ETag: "619c13d6-20"
+Accept-Ranges: bytes
+
+
+GET /static/vendor/bootstrap/css/bootstrap.min.css HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:16 GMT
+Content-Type: text/css
+Content-Length: 160392
+Last-Modified: Mon, 22 Nov 2021 22:04:06 GMT
+Connection: close
+ETag: "619c13d6-27288"
+Accept-Ranges: bytes
+
+
+GET /contact/ HTTP/1.1
+Host: 80.78.240.228
+Accept: */*
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (apple-x86_64-darwin21.1.0) Siege/4.1.1
+Connection: close
+
+
+HTTP/1.1 404 Not Found
+Server: nginx/1.18.0 (Ubuntu)
+Date: Sun, 05 Dec 2021 14:47:17 GMT
+Content-Type: text/html
+Transfer-Encoding: chunked
+Connection: close
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Content-Encoding: gzip
+
+
