@@ -20,7 +20,7 @@ class OrderList(ListView):
     fields = []
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user, is_active=True)
+        return Order.objects.filter(user=self.request.user, is_active=True).select_related('user')
 
 
 class OrderCreate(CreateView):

@@ -69,7 +69,7 @@
                                 </a>
                                 <div class="card-body">
                                     <h4 class="card-title">
-                                        <a href="#">{{ product.name }}</a>
+                                        <a href="{% url 'products:detail' product.id %}">{{ product.name }}</a>
                                     </h4>
                                     <h5>{{ product.price }} руб.</h5>
                                     <p class="card-text">{{ product.description }}.</p>
@@ -92,9 +92,10 @@
                                 {% url 'products:page' products.previous_page_number %} {% else %}
                                 # {% endif %}" tabindex="-1" aria-disabled="true">Previous</a>
                         </li>
-                    {% for page in products.paginator.page_range %}
-                        <li class="page-item"><a class="page-link" href="{% url 'products:page' page %}">{{ page }}</a></li>
-                    {% endfor %}
+                        {% for page in products.paginator.page_range %}
+                            <li class="page-item"><a class="page-link"
+                                                     href="{% url 'products:page' page %}">{{ page }}</a></li>
+                        {% endfor %}
                         <li class="page-item {% if not products.has_next %} disabled {% endif %}">
                             <a class="page-link" href="{% if products.has_next %}
                                 {% url 'products:page' products.next_page_number %}
